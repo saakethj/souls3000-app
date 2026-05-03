@@ -137,14 +137,9 @@ function AudioSlot() {
 }
 
 function Cover({ onOpen }: { onOpen: () => void }) {
-  const floatAnim = useRef(new Animated.Value(0)).current;
   const pulseAnim = useRef(new Animated.Value(0.88)).current;
 
   useEffect(() => {
-    Animated.loop(Animated.sequence([
-      Animated.timing(floatAnim, { toValue: -6, duration: 2000, useNativeDriver: true }),
-      Animated.timing(floatAnim, { toValue: 0, duration: 2000, useNativeDriver: true }),
-    ])).start();
     Animated.loop(Animated.sequence([
       Animated.timing(pulseAnim, { toValue: 1, duration: 1250, useNativeDriver: true }),
       Animated.timing(pulseAnim, { toValue: 0.88, duration: 1250, useNativeDriver: true }),
@@ -158,10 +153,7 @@ function Cover({ onOpen }: { onOpen: () => void }) {
           <View key={i} style={[styles.coverSpineDot, { top: 20 + i * (SCREEN_H * 0.82 - 40) / 8 }]} />
         ))}
       </View>
-      {Array.from({ length: 6 }).map((_, i) => (
-        <View key={i} style={[styles.coverRule, { top: `${8 + i * 16}%` as any }]} />
-      ))}
-      <Animated.View style={[styles.coverContent, { transform: [{ translateY: floatAnim }] }]}>
+      <View style={styles.coverContent}>
         <View style={styles.coverAccent} />
         <Text style={styles.coverTitle}>Project Orange</Text>
         <Text style={styles.coverSubtitle}>By Momo & Potti</Text>
@@ -172,7 +164,7 @@ function Cover({ onOpen }: { onOpen: () => void }) {
             <Text style={styles.openBtnText}>open me ♡</Text>
           </TouchableOpacity>
         </Animated.View>
-      </Animated.View>
+      </View>
       <View style={styles.coverSignature}>
         <Text style={styles.coverSignatureText}>I LOVE U 3000 ♡</Text>
       </View>
@@ -211,9 +203,6 @@ function SpreadView({ spreadIndex, onNext, onPrev, onUnlock }: {
     <View style={styles.spread}>
       {/* TOP: image */}
       <View style={styles.spreadTop}>
-        {Array.from({ length: 8 }).map((_, i) => (
-          <View key={i} style={[styles.ruledLine, { top: i * 28 }]} />
-        ))}
         <View style={styles.spreadSpineLine} />
         <View style={{ position: "relative", zIndex: 1 }}>
           <StampImage src={spread.left.src} caption={spread.left.caption} rotation={spread.left.rotation} />
@@ -223,7 +212,6 @@ function SpreadView({ spreadIndex, onNext, onPrev, onUnlock }: {
 
       {/* BOTTOM: text */}
       <ScrollView style={styles.spreadBottom} contentContainerStyle={styles.spreadBottomContent} showsVerticalScrollIndicator={false}>
-        <RuledLines />
         <View style={{ position: "relative", zIndex: 2 }}>
           <Text style={styles.spreadCounter}>{spread.id} / {SPREADS.length}</Text>
           <Text style={styles.spreadHeading}>{spread.right.heading}</Text>
