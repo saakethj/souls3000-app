@@ -6,7 +6,6 @@ export const COLORS = {
   muted: "#888",
   faint: "#1a1a1a",
   border: "#2a2a2a",
-  // Notebook colors
   notebookBg: "#fdfaf2",
   notebookTop: "#f5f0e4",
   notebookLine: "#e4d8c4",
@@ -21,38 +20,37 @@ export const SENTENCES = [
   "Hope you like what's inside ♡",
 ];
 
-const BASE_URL = "https://souls3000.space";
-
+// Supabase storage paths — no BASE_URL needed anymore
 export const SPREADS = [
   {
     id: 1,
-    left: { src: `${BASE_URL}/notebook/SL_Intro_1.jpg`, caption: "This is just the beginning", rotation: -4 },
+    left: { src: "images/SL_Intro_1.jpg", caption: "This is just the beginning", rotation: -4 },
     right: { heading: "Hey Potti.", body: "A man's gotta try, right? I'm definitely not the creative genius in this relationship, but I built this with all the love I have. While you read this, I'm sitting right here blushing—mostly because I'm wondering what you'll think about everything that lies ahead in these pages\n\nIt is not over yet, turn to next page ':)" },
   },
   {
     id: 2,
-    left: { src: `${BASE_URL}/notebook/SL_Intro_2.JPG`, caption: "Nothing beats this crazy-kind, happy, smiling face of yours.", rotation: 3 },
+    left: { src: "images/SL_Intro_2.JPG", caption: "Nothing beats this crazy-kind, happy, smiling face of yours.", rotation: 3 },
     right: { heading: "Surprise, Surprise", body: "I know, I know—you're curious to see what I've actually hidden inside. Just hold onto that excitement for a little longer; our world is still crafting its magic. You'll find out everything soon.\n\nBy the way, maintain that smile like you always do" },
   },
   {
     id: 3,
-    left: { src: `${BASE_URL}/notebook/SL_Intro_3.jpg`, caption: "Feeling which I can't express", rotation: -2 },
+    left: { src: "images/SL_Intro_3.jpg", caption: "Feeling which I can't express", rotation: -2 },
     right: { heading: "Feeling Butterflies", body: "You once asked what those 'butterflies' actually feel like. For me, it's the rush of seeing you after being apart, the way your words hit straight to the heart, and the simple joy in everything you do. Yeah, I know I'm being incredibly cheesy—but I felt it even while doing this\n\nIt's not over yet....\n\nI sound too cringe" },
   },
   {
     id: 4,
-    left: { src: `${BASE_URL}/notebook/SL_Intro_4.jpg`, caption: "Thanks for existing pretty girl. You always steal the show", rotation: 4 },
+    left: { src: "images/SL_Intro_4.jpg", caption: "Thanks for existing pretty girl. You always steal the show", rotation: 4 },
     right: { heading: "Why Project Orange?", body: "Written in these walls are stories that I can't explain.' That lyric is exactly why this exists. This is our place, our story, and our shared moments—a digital sanctuary for our so-called happy place.\n\nIt's almost time, yes you have to listen to my voice below", hasAudio: true },
   },
   {
     id: 5,
-    left: { src: `${BASE_URL}/notebook/SL_Intro_5.jpg`, caption: "Almost there...", rotation: -3 },
+    left: { src: "images/SL_Intro_5.jpg", caption: "Almost there...", rotation: -3 },
     right: { heading: "One last thing.", body: "Before you step in — Enter cute password.", isPassword: true, hint: "💭 Hint : MyNickName + YourNickName@3000" },
   },
 ];
 
-export const PASSWORD = "momopotti@3000"; // ← update to your real password
-export const AUDIO_SRC = `${BASE_URL}/audio/ProjectOrange.mp3`;
+export const PASSWORD = "momopotti@3000";
+export const AUDIO_SRC = "audio/ProjectOrange.mp3";
 
 export const WRONG_RESPONSES = [
   "That's not it... nice try though 🙈",

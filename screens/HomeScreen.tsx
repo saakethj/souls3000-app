@@ -22,6 +22,7 @@ import {
   AUDIO_SRC,
   WRONG_RESPONSES,
 } from "../lib/constants";
+import { getSignedUrl } from "../lib/supabase";
 
 const { width: SCREEN_W, height: SCREEN_H } = Dimensions.get("window");
 const CARD_W = Math.min(SCREEN_W * 0.92, 400);
@@ -43,16 +44,33 @@ function RuledLines() {
 function StampImage({ src, caption, rotation = -3 }: { src: string; caption?: string; rotation?: number }) {
   const [error, setError] = useState(false);
   const [loaded, setLoaded] = useState(false);
+  const [signedUrl, setSignedUrl] = useState<string | null>(null);
+
+useEffect(() => {
+  console.log("Fetching signed URL for:", src);
+  getSignedUrl(src)
+    .then((url) => {
+      console.log("Got URL:", url);
+      setSignedUrl(url);
+    })
+    .catch((err) => {
+      console.log("Signed URL error:", err);
+      setError(true);
+    });
+}, [src]);
+
   return (
     <View style={[styles.stampOuter, { transform: [{ rotate: `${rotation}deg` }] }]}>
       <View style={styles.stampTape} />
       <View style={styles.stampCard}>
         <View style={styles.stampImgBox}>
-          {!error ? (
+          {!error && signedUrl ? (
             <>
               {!loaded && <ActivityIndicator color={COLORS.primary} style={StyleSheet.absoluteFill} />}
-              <Image source={{ uri: src }} style={styles.stampImg} onLoad={() => setLoaded(true)} onError={() => setError(true)} resizeMode="cover" />
+              <Image source={{ uri: signedUrl }} style={styles.stampImg} onLoad={() => setLoaded(true)} onError={() => setError(true)} resizeMode="cover" />
             </>
+          ) : !signedUrl && !error ? (
+            <ActivityIndicator color={COLORS.primary} />
           ) : (
             <Text style={styles.stampFallback}>♡</Text>
           )}
@@ -70,14 +88,21 @@ function AudioSlot() {
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [loaded, setLoaded] = useState(false);
+  const [audioUrl, setAudioUrl] = useState<string | null>(null);
 
   useEffect(() => {
+    // Fetch signed URL first, then load audio
+    getSignedUrl(AUDIO_SRC).then((url) => setAudioUrl(url)).catch(console.error);
+  }, []);
+
+  useEffect(() => {
+    if (!audioUrl) return;
     let sound: Audio.Sound;
     (async () => {
       try {
         await Audio.setAudioModeAsync({ playsInSilentModeIOS: true });
         const { sound: s } = await Audio.Sound.createAsync(
-          { uri: AUDIO_SRC },
+          { uri: audioUrl },
           { shouldPlay: false },
           (status) => {
             if (status.isLoaded) {
@@ -99,7 +124,9 @@ function AudioSlot() {
       } catch (e) { console.log("Audio error", e); }
     })();
     return () => { sound?.unloadAsync(); };
-  }, []);
+  }, [audioUrl]);
+
+  // rest of the function stays exactly the same...
 
   async function togglePlay() {
     const s = soundRef.current;
