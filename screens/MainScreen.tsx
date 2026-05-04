@@ -3,6 +3,8 @@ import { ScrollView, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { COLORS } from "../lib/constants";
 import LoveHero from "./LoveHero";
+import LoveCountdown from "./LoveCountdown";
+import LoveLetters from "./LoveLetters";
 
 export default function MainScreen() {
   return (
@@ -13,6 +15,8 @@ export default function MainScreen() {
         showsVerticalScrollIndicator={false}
       >
         <LoveHero />
+        <LoveCountdown />
+        <LoveLetters />
         {/* Next sections go here one by one */}
       </ScrollView>
     </SafeAreaView>
