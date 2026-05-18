@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git -C \"c:\\\\Users\\\\saake\\\\Downloads\\\\Saaki_personal\\\\Dev\\\\ProjectOrange\\\\souls-app\" branch -a)",
+      "Bash(git -C \"c:\\\\Users\\\\saake\\\\Downloads\\\\Saaki_personal\\\\Dev\\\\ProjectOrange\\\\souls-app\" log --oneline -5)",
+      "PowerShell(Set-Location \"c:\\\\Users\\\\saake\\\\Downloads\\\\Saaki_personal\\\\Dev\\\\ProjectOrange\\\\souls-app\"; Get-ChildItem -Force | Where-Object { $_.Name -ne '.git' } | ForEach-Object { Remove-Item -Recurse -Force $_.FullName })",
+      "Bash(npx create-expo-app@latest . --template blank-typescript)",
+      "Bash(npx create-expo-app@latest _init --template blank-typescript)"
+    ]
+  }
+}
