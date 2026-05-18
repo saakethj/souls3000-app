@@ -1,1 +1,81 @@
 @AGENTS.md
+
+# S.O.U.L.S — React Native App
+
+Private couple's digital memory vault. Mobile replica of souls3000.space.
+
+## Stack
+
+- Expo SDK 54 (blank TypeScript template)
+- React Navigation v7 (native stack)
+- expo-auth-session v7 (Google OAuth — no useProxy)
+- expo-secure-store (JWT storage)
+- expo-linear-gradient, @expo/vector-icons
+- react-native-reanimated (required by native-stack v7)
+
+## Backend
+
+Next.js + Supabase at `https://souls3000.space`. **Do not change web behavior.**
+
+Mobile auth bridge: `POST /api/auth/mobile` — accepts Google `idToken`, returns a signed 30-day JWT. All API calls attach `Authorization: Bearer <token>` via `src/lib/api.ts`.
+
+## Project Structure
+
+```
+App.tsx                        — root: SafeAreaProvider → AuthProvider → NavigationContainer
+src/
+  context/AuthContext.tsx      — token state, signIn/signOut, SecureStore persistence
+  lib/api.ts                   — apiGet/apiPost helpers with auto Bearer header
+  navigation/AppNavigator.tsx  — shows SignIn if no token, Home if authenticated
+  screens/
+    SignInScreen.tsx            — Google OAuth → /api/auth/mobile → store JWT
+    HomeScreen.tsx              — placeholder, to be replaced screen by screen
+```
+
+## Auth Flow
+
+1. User taps "Sign In with Google"
+2. `expo-auth-session` opens Google consent → returns `id_token`
+3. App POSTs `id_token` to `https://souls3000.space/api/auth/mobile`
+4. Backend verifies with Google, checks `OAUTH_ALLOWED_EMAIL`, returns signed JWT
+5. JWT stored in SecureStore, all subsequent API calls use it as Bearer token
+
+## Environment Variables (.env — not committed)
+
+```
+EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID=...
+EXPO_PUBLIC_GOOGLE_ANDROID_CLIENT_ID=...
+```
+
+## Android Build Notes
+
+- Package name: `com.saakethj.soulsapp`
+- Must use `npx expo run:android` (development build), NOT Expo Go
+- Requires `JAVA_HOME` pointing to Android Studio JBR: `C:\Program Files\Android\Android Studio\jbr`
+- Requires `ANDROID_HOME`: `C:\Users\saake\AppData\Local\Android\Sdk`
+- Windows long path support must be enabled (`LongPathsEnabled = 1` in registry)
+- Project must live at a short path (e.g. `C:\Dev\souls-app`) to avoid MAX_PATH errors in CMake
+
+## Screens Plan
+
+Build page by page. User provides screenshot before each section.
+
+| Screen | Status |
+|--------|--------|
+| Sign In | Done |
+| Home Dashboard | Placeholder — build next |
+| Gallery | Not started |
+| Journal | Not started |
+| Crafts | Not started |
+| Travel | Not started |
+
+## Design Tokens
+
+- Background gradient: `['#1a0d05', '#0a0503', '#050505']`
+- Primary text: `#f5e9d6`
+- Muted text: `rgba(245, 233, 214, 0.5)`
+- Accent/gold: `rgba(232, 201, 154, 0.4)`
+- Error: `#C8846A`
+- Fonts: system only — SF Pro on iOS (`System`), Roboto on Android (`Roboto` / `Roboto-Medium`)
+- No custom/Google fonts
+

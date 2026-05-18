@@ -2,6 +2,7 @@
   "expo": {
     "name": "S.O.U.L.S",
     "slug": "souls-app",
+    "scheme": "souls-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -16,6 +17,7 @@
       "supportsTablet": true
     },
     "android": {
+      "package": "com.saakethj.soulsapp",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#050505"
@@ -25,6 +27,11 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": [
+      "expo-web-browser",
+      "expo-secure-store",
+      "expo-font"
+    ]
   }
 }
