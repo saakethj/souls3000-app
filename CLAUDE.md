@@ -37,6 +37,7 @@ src/
     HomeScreen.tsx               — pure black bg; composes Home sections + sign-out
   components/
     Hero.tsx                     — Home: title + subtext + Ember & Wade signed-URL image + intro copy
+    Countdown.tsx                — Home: live years/months/days since 2021-09-11 + rotating italic phrase
 ```
 
 ## Auth Flow
@@ -72,7 +73,7 @@ Build page by page. User provides screenshot before each section. Docs are updat
 |--------|--------|
 | Sign In | Done |
 | Home — Hero | Done |
-| Home — Countdown | Not started |
+| Home — Countdown | Done |
 | Home — Letters / remaining sections | Not started |
 | Gallery | Not started |
 | Journal | Not started |
@@ -88,4 +89,4 @@ Build page by page. User provides screenshot before each section. Docs are updat
 - Heading gold: `#E8C99A`
 - Accent / labels: `#C8846A`
 - Error: `#C8846A`
-- Fonts: system only — SF Pro on iOS (`System`), Roboto on Android (`Roboto` / `Roboto-Medium`). No custom/Google fonts.
+- Fonts: system only — SF Pro on iOS (`System`), Roboto on Android (`Roboto` / `Roboto-Medium`). For serif numerals (e.g. Countdown), use `Georgia` on iOS and `serif` on Android. No custom/Google fonts.

@@ -29,7 +29,7 @@ npx expo run:android
 
 - [x] Sign In (Google OAuth → JWT bridge)
 - [x] Home — Hero section (signed-URL image + intro copy, pure black background)
-- [ ] Home — Countdown
+- [x] Home — Countdown (live timer + rotating phrase)
 - [ ] Home — remaining sections
 - [ ] Gallery / Journal / Crafts / Travel
 
