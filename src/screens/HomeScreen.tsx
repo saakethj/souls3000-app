@@ -1,34 +1,49 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { ScrollView, StyleSheet, StatusBar, View, Text, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import Hero from '../components/Hero';
 import { useAuth } from '../context/AuthContext';
 
 export default function HomeScreen() {
   const { signOut } = useAuth();
   return (
-    <View style={styles.container}>
-      <SafeAreaView style={styles.inner}>
-        <Text style={styles.title}>Home Dashboard</Text>
-        <Text style={styles.sub}>Coming soon...</Text>
-        <TouchableOpacity onPress={signOut} style={styles.btn}>
-          <Text style={styles.btnText}>Sign Out</Text>
-        </TouchableOpacity>
+    <View style={styles.bg}>
+      <StatusBar barStyle="light-content" backgroundColor="#000" translucent />
+      <SafeAreaView style={styles.safe} edges={['top']}>
+        <ScrollView
+          contentContainerStyle={styles.scroll}
+          showsVerticalScrollIndicator={false}
+        >
+          <Hero />
+          <View style={styles.footer}>
+            <TouchableOpacity onPress={signOut} style={styles.btn} activeOpacity={0.7}>
+              <Text style={styles.btnText}>Sign Out</Text>
+            </TouchableOpacity>
+          </View>
+        </ScrollView>
       </SafeAreaView>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#050505' },
-  inner: { flex: 1, alignItems: 'center', justifyContent: 'center' },
-  title: { color: '#f5e9d6', fontSize: 24, marginBottom: 8 },
-  sub: { color: 'rgba(245,233,214,0.5)', fontSize: 14, marginBottom: 32 },
+  bg: { flex: 1, backgroundColor: '#000' },
+  safe: { flex: 1 },
+  scroll: { paddingBottom: 48 },
+  footer: {
+    alignItems: 'center',
+    marginTop: 24,
+  },
   btn: {
     paddingVertical: 10,
-    paddingHorizontal: 20,
+    paddingHorizontal: 24,
     borderWidth: 1,
     borderColor: 'rgba(245,233,214,0.2)',
-    borderRadius: 8,
+    borderRadius: 999,
   },
-  btnText: { color: '#f5e9d6', fontSize: 13 },
+  btnText: {
+    color: '#f5e9d6',
+    fontSize: 12,
+    letterSpacing: 1.5,
+  },
 });

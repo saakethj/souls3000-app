@@ -7,7 +7,7 @@ async function authHeaders(): Promise<Record<string, string>> {
   const token = await SecureStore.getItemAsync(TOKEN_KEY);
   return {
     'Content-Type': 'application/json',
-    ...(token ? { Authorization: `Bearer ${token}` } : {}),
+    ...(token ? { 'X-Auth-Token': token } : {}),
   };
 }
 
