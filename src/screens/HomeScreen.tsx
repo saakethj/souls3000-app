@@ -3,6 +3,7 @@ import { ScrollView, StyleSheet, StatusBar, View, Text, TouchableOpacity } from 
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Hero from '../components/Hero';
 import Countdown from '../components/Countdown';
+import LoveLetters from '../components/LoveLetters';
 import { useAuth } from '../context/AuthContext';
 
 export default function HomeScreen() {
@@ -17,6 +18,7 @@ export default function HomeScreen() {
         >
           <Hero />
           <Countdown />
+          <LoveLetters />
           <View style={styles.footer}>
             <TouchableOpacity onPress={signOut} style={styles.btn} activeOpacity={0.7}>
               <Text style={styles.btnText}>Sign Out</Text>

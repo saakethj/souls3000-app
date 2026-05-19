@@ -38,6 +38,7 @@ src/
   components/
     Hero.tsx                     — Home: title + subtext + Ember & Wade signed-URL image + intro copy
     Countdown.tsx                — Home: live years/months/days since 2021-09-11 + rotating italic phrase
+    LoveLetters.tsx              — Home: two tap-to-open SVG envelopes (Momo / Bangaram), courier-paper reveal
 ```
 
 ## Auth Flow
@@ -74,7 +75,8 @@ Build page by page. User provides screenshot before each section. Docs are updat
 | Sign In | Done |
 | Home — Hero | Done |
 | Home — Countdown | Done |
-| Home — Letters / remaining sections | Not started |
+| Home — Love Letters | Done |
+| Home — remaining sections | Not started |
 | Gallery | Not started |
 | Journal | Not started |
 | Crafts | Not started |
@@ -89,4 +91,4 @@ Build page by page. User provides screenshot before each section. Docs are updat
 - Heading gold: `#E8C99A`
 - Accent / labels: `#C8846A`
 - Error: `#C8846A`
-- Fonts: system only — SF Pro on iOS (`System`), Roboto on Android (`Roboto` / `Roboto-Medium`). For serif numerals (e.g. Countdown), use `Georgia` on iOS and `serif` on Android. No custom/Google fonts.
+- Fonts: system only — SF Pro on iOS (`System`), Roboto on Android (`Roboto` / `Roboto-Medium`). For serif (Countdown numerals, italic quotes), use `Georgia` on iOS and `serif` on Android. For typewriter feel (Love Letter paper), use `Courier` on iOS and `monospace` on Android. No custom/Google fonts.
