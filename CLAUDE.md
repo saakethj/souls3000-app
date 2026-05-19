@@ -39,7 +39,10 @@ src/
     Hero.tsx                     — Home: title + subtext + Ember & Wade signed-URL image + intro copy
     Countdown.tsx                — Home: live years/months/days since 2021-09-11 + rotating italic phrase
     LoveLetters.tsx              — Home: two tap-to-open SVG envelopes (Momo / Bangaram), courier-paper reveal
+    LoveTimeline.tsx             — Home: vertical-spine timeline; cards fade + slide in (alternating L/R) as scrollY passes their measured Y; data-driven via TIMELINE array
 ```
+
+HomeScreen wraps its ScrollView in `Animated.ScrollView` and exposes a `scrollY` `Animated.Value` (native-driven). Sections that need scroll-position-aware animations (currently `LoveTimeline`) accept `scrollY` as a prop and interpolate against each child's measured Y. New scroll-reveal sections should follow this pattern rather than mounting their own scroll listeners.
 
 ## Auth Flow
 
@@ -76,6 +79,7 @@ Build page by page. User provides screenshot before each section. Docs are updat
 | Home — Hero | Done |
 | Home — Countdown | Done |
 | Home — Love Letters | Done |
+| Home — Timeline | Done |
 | Home — remaining sections | Not started |
 | Gallery | Not started |
 | Journal | Not started |

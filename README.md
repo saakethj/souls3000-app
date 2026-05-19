@@ -31,6 +31,7 @@ npx expo run:android
 - [x] Home — Hero section (signed-URL image + intro copy, pure black background)
 - [x] Home — Countdown (live timer + rotating phrase)
 - [x] Home — Love Letters (tap-to-open SVG envelopes)
+- [x] Home — Timeline (scroll-reveal milestones with vertical spine)
 - [ ] Home — remaining sections
 - [ ] Gallery / Journal / Crafts / Travel
 

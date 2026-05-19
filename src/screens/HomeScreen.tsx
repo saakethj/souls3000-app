@@ -1,30 +1,39 @@
-import React from 'react';
-import { ScrollView, StyleSheet, StatusBar, View, Text, TouchableOpacity } from 'react-native';
+import React, { useRef } from 'react';
+import { Animated, StyleSheet, StatusBar, View, Text, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Hero from '../components/Hero';
 import Countdown from '../components/Countdown';
 import LoveLetters from '../components/LoveLetters';
+import LoveTimeline from '../components/LoveTimeline';
 import { useAuth } from '../context/AuthContext';
 
 export default function HomeScreen() {
   const { signOut } = useAuth();
+  const scrollY = useRef(new Animated.Value(0)).current;
+
   return (
     <View style={styles.bg}>
       <StatusBar barStyle="light-content" backgroundColor="#000" translucent />
       <SafeAreaView style={styles.safe} edges={['top']}>
-        <ScrollView
+        <Animated.ScrollView
           contentContainerStyle={styles.scroll}
           showsVerticalScrollIndicator={false}
+          onScroll={Animated.event(
+            [{ nativeEvent: { contentOffset: { y: scrollY } } }],
+            { useNativeDriver: true }
+          )}
+          scrollEventThrottle={16}
         >
           <Hero />
           <Countdown />
           <LoveLetters />
+          <LoveTimeline scrollY={scrollY} />
           <View style={styles.footer}>
             <TouchableOpacity onPress={signOut} style={styles.btn} activeOpacity={0.7}>
               <Text style={styles.btnText}>Sign Out</Text>
             </TouchableOpacity>
           </View>
-        </ScrollView>
+        </Animated.ScrollView>
       </SafeAreaView>
     </View>
   );
