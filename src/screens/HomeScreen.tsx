@@ -2,6 +2,7 @@ import React from 'react';
 import { ScrollView, StyleSheet, StatusBar, View, Text, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Hero from '../components/Hero';
+import Countdown from '../components/Countdown';
 import { useAuth } from '../context/AuthContext';
 
 export default function HomeScreen() {
@@ -15,6 +16,7 @@ export default function HomeScreen() {
           showsVerticalScrollIndicator={false}
         >
           <Hero />
+          <Countdown />
           <View style={styles.footer}>
             <TouchableOpacity onPress={signOut} style={styles.btn} activeOpacity={0.7}>
               <Text style={styles.btnText}>Sign Out</Text>
