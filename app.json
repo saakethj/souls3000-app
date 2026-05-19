@@ -2,7 +2,11 @@
   "expo": {
     "name": "S.O.U.L.S",
     "slug": "souls-app",
-    "scheme": "souls-app",
+    "scheme": [
+      "souls-app",
+      "com.saakethj.soulsapp",
+      "com.googleusercontent.apps.258191984188-fns7rhmdu9hr05cu7vi9uksf9mo1ngg6"
+    ],
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
